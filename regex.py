@@ -57,14 +57,14 @@ def extract_locality(address):
 
 
 # Load Excel file
-print("📂 Reading Excel file...")
+print("Reading Excel file...")
 df = pd.read_excel(INPUT_FILE)
 
 if ADDRESS_COL not in df.columns:
     raise KeyError(f"Column '{ADDRESS_COL}' not found in Excel. Please rename your address column to '{ADDRESS_COL}'.")
 
 # Clean and extract
-print("🧹 Cleaning and extracting locality info...")
+print("Cleaning and extracting locality info...")
 df['cleaned_address'] = df[ADDRESS_COL].apply(clean_address)
 
 # Apply the extraction function
@@ -73,7 +73,7 @@ df[['sublocality', 'locality']] = df['cleaned_address'].apply(
 )
 
 # Save to Excel
-print("💾 Saving results to Excel...")
+print("Saving results")
 df.to_excel(OUTPUT_FILE, index=False)
 
 print("Extracted data saved to:", OUTPUT_FILE)
